@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var isError = false
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        Button {
+            isError = true
+            print("test")
+        } label: {
+            Text("Enter")
+        }.actionSheet(isPresented: $isError) {
+            ActionSheet(title: Text("Load"),
+                        message: Text("Do you want to load a photo?"),
+                        buttons: [.default(Text("Load"), action: {
+                print("Load")
+            }), .cancel()])
         }
-        .padding()
+
     }
 }
 
